@@ -28,6 +28,13 @@ const refreshCookieOptions = {
   maxAge:   REFRESH_TOKEN_EXPIRY_MS,
 };
 
+const clearCookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  path: '/',
+};
+
 export const registerUser = wrapAsync(async (req, res, next) => {
   const { name, email, dob, phone_no, tax_id, tax_id_type, country_code, password } = req.body;
 
@@ -138,8 +145,8 @@ export const refreshSession = wrapAsync(async (req, res, next) => {
   const session = rows[0];
 
   if (!session) {
-    res.clearCookie('ACCESS_TOKEN',  { path: '/' });
-    res.clearCookie('REFRESH_TOKEN', { path: '/' });
+    res.clearCookie('ACCESS_TOKEN',  clearCookieOptions);
+    res.clearCookie('REFRESH_TOKEN', clearCookieOptions);
     return res.status(401).json({ error: 'Session expired. Please log in again.' });
   }
 
@@ -177,7 +184,7 @@ export const logoutUser = wrapAsync(async (req, res, next) => {
       [tokenHash]
     );
   }
-  res.clearCookie('ACCESS_TOKEN',  { path: '/' });
-  res.clearCookie('REFRESH_TOKEN', { path: '/' });
+  res.clearCookie('ACCESS_TOKEN',  clearCookieOptions);
+  res.clearCookie('REFRESH_TOKEN', clearCookieOptions);
   return res.status(200).json({ message: 'Logged out successfully.' });
 });
