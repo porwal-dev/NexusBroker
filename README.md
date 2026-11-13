@@ -3,8 +3,8 @@
 A production-grade stock trading platform built from scratch — inspired by Zerodha and Groww.
 
 ## Live Demo
-- **Frontend:** https://nexus-broker.vercel.app
-- **Backend API:** https://nexusbroker-production.up.railway.app/health
+- **Frontend:** https://nexus-broker-lyart.vercel.app
+- **Backend API:** https://nexusbroker-api.onrender.com/health
 - **Demo login:** arjun@demo.com / Demo@1234
 
 ## Features
