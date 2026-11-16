@@ -33,7 +33,7 @@ cd backend
 cp .env.example .env      # fill in your values
 npm install
 node migrateDB.mjs        # create tables
-node resetAndSeed.mjs     # seed demo data
+node seedDemo.mjs     # seed demo data
 node server.mjs           # start server
 ```
 
