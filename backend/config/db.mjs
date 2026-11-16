@@ -5,7 +5,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 let poolConfig;
 
-if (process.env.MYSQL_URL) {
+if (isProduction) {
   poolConfig = {
     uri: process.env.MYSQL_URL,
     waitForConnections: true,
